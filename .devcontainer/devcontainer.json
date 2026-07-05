@@ -1,0 +1,15 @@
+{
+  "name": "rust",
+  "dockerComposeFile": "../docker-compose.yml",
+  "workspaceFolder": "/workspace",
+  "service": "rust",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "1yib.rust-bundle",
+        "rust-lang.rust-analyzer",
+        "dustypomerleau.rust-syntax"
+      ]
+    }
+  }
+}

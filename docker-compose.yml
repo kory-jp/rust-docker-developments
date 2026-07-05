@@ -1,0 +1,10 @@
+services:
+    rust:
+        build: .
+        container_name: rust
+        volumes:
+            - .:/workspace
+        environment:
+            - CARGO_TARGET_DIR=/tmp/target
+        tty: true
+
