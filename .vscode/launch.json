@@ -7,18 +7,18 @@
     {
       "type": "lldb",
       "request": "launch",
-      "name": "Debug executable rust-lesson",
+      "name": "Debug executable project",
       "cargo": {
         "args": [
           "build",
-          "--bin=rust-lesson",
-          "--package=rust-lesson"
+          "--bin=project",
+          "--package=project"
         ],
         "filter": {
-          "name": "rust-lesson",
+          "name": "project",
           "kind": "bin"
         },
-        "cwd": "${workspaceFolder}/rust-lesson"
+        "cwd": "${workspaceFolder}/project"
       },
     },
   ]

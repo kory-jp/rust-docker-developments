@@ -1,7 +1,7 @@
 services:
     rust:
         build: .
-        container_name: rust
+        container_name: project
         volumes:
             - .:/workspace
         environment:

@@ -23,7 +23,7 @@
 ```json
 "type": "lldb",
 "request": "launch",
-"name": "Debug executable rust-lesson",
+"name": "Debug executable project",
 ```
 
 - **type**: デバッガの種類。`"lldb"` は LLVM Debugger を指定します
@@ -36,14 +36,14 @@
 "cargo": {
   "args": [
     "build",
-    "--bin=rust-lesson",
-    "--package=rust-lesson"
+    "--bin=project",
+    "--package=project"
   ],
   "filter": {
-    "name": "rust-lesson",
+    "name": "project",
     "kind": "bin"
   },
-  "cwd": "${workspaceFolder}/rust-lesson"
+  "cwd": "${workspaceFolder}/project"
 }
 ```
 
@@ -52,20 +52,20 @@
 デバッグ前に実行される cargo コマンドの引数を定義します。
 
 - `"build"`: Rust プロジェクトをビルドします
-- `"--bin=rust-lesson"`: `rust-lesson` という名前のバイナリをビルド対象にします
-- `"--package=rust-lesson"`: `rust-lesson` パッケージをビルド対象にします
+- `"--bin=project"`: `project` という名前のバイナリをビルド対象にします
+- `"--package=project"`: `project` パッケージをビルド対象にします
 
 #### cargo.filter
 
 ビルド結果からデバッグ対象の実行ファイルをフィルタリングします。
 
-- `"name": "rust-lesson"`: 実行ファイルの名前が `rust-lesson` に一致する
+- `"name": "project"`: 実行ファイルの名前が `project` に一致する
 - `"kind": "bin"`: バイナリファイル（実行可能ファイル）を対象にします
 
 #### cargo.cwd（重要な修正点）
 
 ```json
-"cwd": "${workspaceFolder}/rust-lesson"
+"cwd": "${workspaceFolder}/project"
 ```
 
 **このパラメータは問題解決のために追加されました。**
@@ -91,7 +91,7 @@ error: could not find `Cargo.toml` in `/workspace` or any parent directory
   ├── Dockerfile
   ├── README.md
   ├── docker-compose.yml
-  └── rust-lesson/          ← Cargo.toml はここ
+  └── project/          ← Cargo.toml はここ
       ├── Cargo.toml
       ├── src/
       └── target/
@@ -102,9 +102,9 @@ error: could not find `Cargo.toml` in `/workspace` or any parent directory
 `cargo` セクションに `cwd` パラメータを追加することで、cargo コマンドを実行するワーキングディレクトリを明示的に指定しました。
 
 - **${workspaceFolder}**: VS Code で開いているワークスペースのルートパス（/workspace）
-- **${workspaceFolder}/rust-lesson**: Rust プロジェクトのルートパス（/workspace/rust-lesson）
+- **${workspaceFolder}/project**: Rust プロジェクトのルートパス（/workspace/project）
 
-これにより、cargo は `/workspace/rust-lesson/` ディレクトリで実行され、正しく `Cargo.toml` を見つけられるようになりました。
+これにより、cargo は `/workspace/project/` ディレクトリで実行され、正しく `Cargo.toml` を見つけられるようになりました。
 
 ## 修正前後の比較
 
@@ -114,11 +114,11 @@ error: could not find `Cargo.toml` in `/workspace` or any parent directory
 "cargo": {
   "args": [
     "build",
-    "--bin=rust-lesson",
-    "--package=rust-lesson"
+    "--bin=project",
+    "--package=project"
   ],
   "filter": {
-    "name": "rust-lesson",
+    "name": "project",
     "kind": "bin"
   }
 }
@@ -132,24 +132,24 @@ cargo セクション内にワーキングディレクトリの指定がなく�
 "cargo": {
   "args": [
     "build",
-    "--bin=rust-lesson",
-    "--package=rust-lesson"
+    "--bin=project",
+    "--package=project"
   ],
   "filter": {
-    "name": "rust-lesson",
+    "name": "project",
     "kind": "bin"
   },
-  "cwd": "${workspaceFolder}/rust-lesson"
+  "cwd": "${workspaceFolder}/project"
 }
 ```
 
-`"cwd": "${workspaceFolder}/rust-lesson"` を追加して、正しいディレクトリを指定しました。
+`"cwd": "${workspaceFolder}/project"` を追加して、正しいディレクトリを指定しました。
 
 ## その他の設定
 
 ```json
 "args": [],
-"cwd": "${workspaceFolder}/rust-lesson"
+"cwd": "${workspaceFolder}/project"
 ```
 
 - **args**: デバッグ対象のプログラムに渡すコマンドライン引数（空の場合は引数なし）
@@ -172,7 +172,7 @@ cargo セクション内にワーキングディレクトリの指定がなく�
   {
     "type": "lldb",
     "request": "launch",
-    "name": "Debug executable rust-lesson",
+    "name": "Debug executable project",
     ...
   },
   {
@@ -180,7 +180,7 @@ cargo セクション内にワーキングディレクトリの指定がなく�
     "request": "launch",
     "name": "Debug tests",
     "cargo": {
-      "args": ["test", "--no-run", "--package=rust-lesson"],
+      "args": ["test", "--no-run", "--package=project"],
       ...
     }
   }
