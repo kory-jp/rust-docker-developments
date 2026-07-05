@@ -6,6 +6,8 @@
 
 ## 起動
 
+vscodeの設定を反映させるために `.vscode/launch.json` ファイルの `project` 部分を今回、 `cargo new` で作成するプロジェクト名で置換をする。
+
 ローカルにてコンテナ起動
 
 ```
@@ -23,12 +25,12 @@ cd /workspace
 新プロジェクト作成
 
 ```
-cargo new hello_world
+cargo new project
 ```
 
 hello world
 
 ```
-cd hell_world
+cd project
 cargo run
 ```
